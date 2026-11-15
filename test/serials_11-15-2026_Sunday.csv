@@ -1,0 +1,2 @@
+location,date,day_of_week,time_recorded,t_minutes_after_midnight,time_slot,estimated_occupancy_N,signal_strength_dBm,avg_latency_ms,download_throughput_Mbps,upload_throughput_Mbps,packet_loss_pct,ssid,bssid,os_detected,speedtest_server_id
+serials,11-15-2026,Sunday,23:46:30,1426.5,outside_window,14,-63.0,3.858,71.8616,66.1637,0.0,Team_Patiño_5G,bc:0f:9a:9b:a4:18,Linux,70709
