@@ -14,7 +14,7 @@ import sys
 PING_TARGET = "8.8.8.8"  # Fixed latency test destination
 PING_COUNT = 30  # Fixed packet count (3.33% packet loss resolution)
 SPEEDTEST_SERVER_ID = (
-    "70709"  # Locked to your verified server ID (or set to None for auto)
+    None  # Locked to your verified server ID (or set to None for auto)
 )
 
 
