@@ -26,12 +26,40 @@ The result will be a .csv file with file name:
 
 A new .csv file is created with that name, unless an existing one already exists, in that case the log is appended to the existing file.
 
-Packet loss and latency are recorded for two destinations:
-- `gateway_avg_latency_ms` and `gateway_packet_loss_pct` measure the local
-  connection to the default gateway, which helps identify Wi-Fi/local-network
-  problems.
-- `avg_latency_ms` and `packet_loss_pct` measure the end-to-end path to
-  `8.8.8.8`, which better reflects internet connectivity.
+## CSV columns
+
+The CSV contains the following measurements and context for each collection:
+
+| Column | Description | Possible values / range |
+| --- | --- | --- |
+| `location` | Label entered by the user to identify the place; it does not determine the device coordinates. | Any non-empty text |
+| `latitude` | Device latitude reported by the browser's location service. | -90 to 90 degrees; blank if location is unavailable |
+| `longitude` | Device longitude reported by the browser's location service. | -180 to 180 degrees; blank if location is unavailable |
+| `x-coordinate` | East/west position in meters relative to the configured origin; east is positive. | No fixed range; depends on the device and origin |
+| `y-coordinate` | North/south position in meters relative to the configured origin; north is positive. | No fixed range; depends on the device and origin |
+| `date` | Local date when the row was recorded. | `MM-DD-YYYY` |
+| `day_of_week` | Local day of the week when the row was recorded. | `Monday` through `Sunday` |
+| `time_recorded` | Local time when the row was recorded. | `HH:MM:SS` (24-hour clock) |
+| `t_minutes_after_midnight` | Time of day expressed as minutes after local midnight. | 0 to less than 1440 |
+| `time_slot` | Hour-based collection slot. | `s1`–`s8` for 9:00 AM–4:59 PM; `outside_window` at other hours |
+| `estimated_occupancy_N` | User's estimated headcount for the space. | Non-negative integer |
+| `signal_strength_dBm` | Wi-Fi signal strength reported by the operating system; values closer to 0 generally indicate a stronger signal. | Typically about -100 to 0 dBm; hardware-dependent, or blank if unavailable |
+| `avg_latency_ms` | Average ping round-trip time to `8.8.8.8`, reflecting the path to the internet. | 0 ms or higher; no fixed upper bound, or blank if unavailable |
+| `download_throughput_Mbps` | Measured download data rate from the speed test. | 0 Mbps or higher; no fixed upper bound, or blank if unavailable |
+| `upload_throughput_Mbps` | Measured upload data rate from the speed test. | 0 Mbps or higher; no fixed upper bound, or blank if unavailable |
+| `packet_loss_pct` | Percentage of ping packets lost when testing `8.8.8.8`. | 0–100%; with 30 packets, approximately 3.33 percentage-point increments |
+| `gateway_avg_latency_ms` | Average ping round-trip time to the local default gateway; helps identify Wi-Fi/local-network problems. | 0 ms or higher; no fixed upper bound, or blank if unavailable |
+| `gateway_packet_loss_pct` | Percentage of ping packets lost when testing the local default gateway. | 0–100%; with 30 packets, approximately 3.33 percentage-point increments; blank if no gateway is found |
+| `ssid` | Name of the connected Wi-Fi network. | Network-provided text; may be blank if unavailable |
+| `bssid` | MAC address identifying the connected Wi-Fi access point. | Usually six hexadecimal byte pairs; may be blank if unavailable |
+| `os_detected` | Operating system used for collection. | `Windows`, `Linux`, or `Darwin` (macOS) |
+| `speedtest_server_id` | Identifier of the server used by the speed test. | Server-provided identifier; may be blank if unavailable |
+
+Latency and packet loss are measured separately for the internet destination
+(`8.8.8.8`) and the local default gateway. The former reflects internet
+connectivity; the latter helps identify local Wi-Fi/network problems. Ranges
+above describe expected or valid values; some measurements have no fixed
+maximum, and unavailable measurements are left blank.
 
 If a gateway cannot be determined, its measurements are left blank. When new
 columns are added to an existing CSV, earlier rows are preserved and the new
