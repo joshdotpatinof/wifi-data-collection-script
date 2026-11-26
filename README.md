@@ -2,10 +2,16 @@
 
 This is a script used for data collection on WiFi metrics.
 
-Run
+Run from the repository directory:
 
 ```bash
+# Linux or macOS
 python3 data.py
+
+# Windows (use whichever command is available)
+py data.py
+# or
+python data.py
 ```
 
 When prompted, enter:

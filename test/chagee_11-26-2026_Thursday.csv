@@ -1,0 +1,3 @@
+location,latitude,longitude,x-coordinate,y-coordinate,date,day_of_week,time_recorded,t_minutes_after_midnight,time_slot,estimated_occupancy_N,signal_strength_dBm,avg_latency_ms,download_throughput_Mbps,upload_throughput_Mbps,packet_loss_pct,gateway_avg_latency_ms,gateway_packet_loss_pct,ssid,bssid,os_detected,speedtest_server_id
+chagee,14.65179,121.075545,735.298,343.28,11-26-2026,Thursday,18:27:37,1107.62,outside_window,21,0.0,113.35,24.2271,19.8247,0.0,14.736,0.0,Josh,32:3d:94:fa:e0:20,Linux,40728
+chagee,14.651781,121.075563,737.288,342.313,11-26-2026,Thursday,18:33:44,1113.73,outside_window,0,0.0,116.167,17.1491,15.934,0.0,85.686,0.0,Josh,32:3d:94:fa:e0:20,Linux,40728
