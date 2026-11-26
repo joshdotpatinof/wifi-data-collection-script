@@ -54,6 +54,17 @@ class PingMeasurementTests(unittest.TestCase):
         self.assertEqual(run.call_args.args[0][-1], "192.168.1.1")
 
 
+class TimeSlotTests(unittest.TestCase):
+    def test_time_slots_use_9_am_to_4_pm_window(self):
+        self.assertEqual(data.get_time_slot(9), "s1")
+        self.assertEqual(data.get_time_slot(12), "s4")
+        self.assertEqual(data.get_time_slot(16), "s8")
+
+    def test_time_slots_outside_collection_window(self):
+        self.assertEqual(data.get_time_slot(8), "outside_window")
+        self.assertEqual(data.get_time_slot(17), "outside_window")
+
+
 class CsvAppendTests(unittest.TestCase):
     def test_appending_new_fields_preserves_existing_rows(self):
         old_fields = ["location", "packet_loss_pct"]

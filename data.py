@@ -422,9 +422,9 @@ def run_speedtest() -> dict:
 
 
 def get_time_slot(hour: int) -> str:
-    """Map hour (8..18) to proposal time slots s1..s11 (8:00 AM - 7:00 PM)."""
-    if 8 <= hour <= 18:
-        return f"s{hour - 7}"
+    """Map hour (9..16) to proposal time slots s1..s8 (9:00 AM - 4:00 PM)."""
+    if 9 <= hour <= 16:
+        return f"s{hour - 8}"
     return "outside_window"
 
 
