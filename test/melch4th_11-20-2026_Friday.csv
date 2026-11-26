@@ -1,0 +1,2 @@
+location,date,day_of_week,time_recorded,t_minutes_after_midnight,time_slot,estimated_occupancy_N,signal_strength_dBm,avg_latency_ms,download_throughput_Mbps,upload_throughput_Mbps,packet_loss_pct,gateway_avg_latency_ms,gateway_packet_loss_pct,ssid,bssid,os_detected,speedtest_server_id
+melch4th,11-20-2026,Friday,15:16:54,916.9,s8,25,-24.0,68.051,0.0,0.0,0.0,,100.0,DILNET2.0,c8:84:8c:58:94:71,Linux,7311
