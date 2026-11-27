@@ -14,6 +14,30 @@ py data.py
 python data.py
 ```
 
+To collect automatically at **10:00 AM, 10:15 AM, 10:30 AM, 10:45 AM,
+11:00 AM, 11:15 AM, 11:30 AM, 11:45 AM, and 12:00 PM**, run:
+
+```bash
+# Linux or macOS
+python3 data.py --schedule
+
+# Windows
+py data.py --schedule
+# or
+python data.py --schedule
+```
+
+Start the scheduled command before 10:00 AM. It asks for the location label,
+estimated occupancy, and device location once, then waits for 10:00 AM and
+collects nine samples. The same occupancy estimate and coordinates are saved
+with each sample. Keep the terminal open, the laptop awake, and its network
+connected until the schedule finishes. If the laptop sleeps or a collection
+runs more than seven minutes late, that time slot is skipped rather than
+collected late or in a burst. If started at or after 10:00 AM, the next
+schedule begins at 10:00 AM the following day.
+
+Running `data.py` without `--schedule` still collects one sample immediately.
+
 When prompted, enter:
 ```bash
 Enter location label:

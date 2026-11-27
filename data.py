@@ -1,5 +1,6 @@
 import csv
-from datetime import datetime
+from datetime import datetime, timedelta
+import argparse
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import ipaddress
 import json
@@ -13,6 +14,7 @@ import subprocess
 import sys
 import tempfile
 import threading
+import time
 import webbrowser
 
 # ==============================================================================
@@ -590,7 +592,7 @@ def coordinates_to_xy(
     return x_coordinate, y_coordinate
 
 
-def main():
+def get_collection_setup():
     os_name = detect_os()
     print(f"Detected OS: {os_name}")
 
@@ -626,6 +628,17 @@ def main():
     print(
         f"Translated coordinates: x={x_coordinate:.3f} m east, "
         f"y={y_coordinate:.3f} m north"
+    )
+
+    return os_name, location, occupancy_n, latitude, longitude
+
+
+def collect_sample(os_name, location, occupancy_n, latitude, longitude):
+    x_coordinate, y_coordinate = coordinates_to_xy(
+        latitude,
+        longitude,
+        ORIGIN_LATITUDE,
+        ORIGIN_LONGITUDE,
     )
 
     now = datetime.now()
@@ -722,6 +735,72 @@ def main():
 
     action = "Appended row to" if file_exists else "Created new log at"
     print(f"\n{action}: {os.path.abspath(filename)}")
+
+
+def run_schedule(setup, first_run):
+    interval = timedelta(minutes=15)
+    run_count = 9
+    print(
+        f"\nScheduled 9 runs from {first_run.strftime('%I:%M %p')} "
+        f"through {(first_run + interval * (run_count - 1)).strftime('%I:%M %p')} "
+        f"(local time). Keep this terminal and the laptop awake."
+    )
+
+    for run_number in range(run_count):
+        scheduled_time = first_run + interval * run_number
+        while True:
+            seconds_until_run = (scheduled_time - datetime.now()).total_seconds()
+            if seconds_until_run <= 0:
+                break
+            time.sleep(min(seconds_until_run, 30))
+
+        now = datetime.now()
+        if now - scheduled_time > timedelta(minutes=7):
+            print(
+                f"\nSkipping run {run_number + 1}/9 for "
+                f"{scheduled_time.strftime('%I:%M %p')}; the laptop was "
+                "asleep or the previous run took too long."
+            )
+            continue
+
+        print(
+            f"\n===== Scheduled run {run_number + 1}/9 "
+            f"({scheduled_time.strftime('%I:%M %p')}) ====="
+        )
+        try:
+            collect_sample(*setup)
+        except Exception as exc:
+            print(f"[Error] This collection failed: {exc}")
+
+    print("\nScheduled collection finished.")
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Collect Wi-Fi measurements.")
+    parser.add_argument(
+        "--schedule",
+        action="store_true",
+        help="collect at 10:00 AM, then every 15 minutes through 12:00 PM",
+    )
+    args = parser.parse_args()
+
+    first_run = None
+    if args.schedule:
+        now = datetime.now()
+        first_run = now.replace(hour=10, minute=0, second=0, microsecond=0)
+        if now >= first_run:
+            first_run += timedelta(days=1)
+        print(
+            "Scheduled collection will begin "
+            f"{first_run.strftime('%A, %B %d at %I:%M %p')} "
+            "(laptop local time)."
+        )
+
+    setup = get_collection_setup()
+    if args.schedule:
+        run_schedule(setup, first_run)
+    else:
+        collect_sample(*setup)
 
 
 if __name__ == "__main__":

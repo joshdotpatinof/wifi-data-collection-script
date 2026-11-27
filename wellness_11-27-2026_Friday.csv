@@ -1,0 +1,9 @@
+location,latitude,longitude,x-coordinate,y-coordinate,date,day_of_week,time_recorded,t_minutes_after_midnight,time_slot,estimated_occupancy_N,signal_strength_dBm,avg_latency_ms,download_throughput_Mbps,upload_throughput_Mbps,packet_loss_pct,gateway_avg_latency_ms,gateway_packet_loss_pct,ssid,bssid,os_detected,speedtest_server_id
+wellness,14.648601,121.068721,1.141,-11.291,11-27-2026,Friday,10:05:06,605.1,s2,9,-57.5,28.0,,,0.0,,100.0,DILNET2.0,c8:a6:08:a0:fd:50,Windows,
+wellness,14.648589,121.068697,-1.375,-12.557,11-27-2026,Friday,10:20:09,620.15,s2,12,-57.5,34.0,,,0.0,,100.0,DILNET2.0,c8:a6:08:a0:fd:50,Windows,
+wellness,14.648589,121.068698,-1.308,-12.631,11-27-2026,Friday,10:30:41,630.68,s2,10,-58.0,28.0,,,0.0,,100.0,DILNET2.0,c8:a6:08:a0:fd:50,Windows,
+wellness,14.648562,121.068765,5.897,-15.631,11-27-2026,Friday,10:45:41,645.68,s2,11,-58.0,30.0,,,0.0,,100.0,DILNET2.0,c8:a6:08:a0:fd:50,Windows,
+wellness,14.648589,121.068717,0.768,-12.556,11-27-2026,Friday,11:00:39,660.65,s3,13,-57.5,30.0,,,0.0,,100.0,DILNET2.0,c8:a6:08:a0:fd:50,Windows,
+wellness,14.648563,121.068733,2.431,-15.54,11-27-2026,Friday,11:16:19,676.32,s3,14,-57.5,29.0,,,0.0,,100.0,DILNET2.0,c8:a6:08:a0:fd:50,Windows,
+wellness,14.64859,121.068753,4.653,-12.512,11-27-2026,Friday,11:32:22,692.37,s3,12,-57.5,30.0,,,0.0,,100.0,DILNET2.0,c8:a6:08:a0:fd:50,Windows,
+wellness,14.648589,121.068697,-1.375,-12.557,11-27-2026,Friday,11:45:45,705.75,s3,14,-58.5,29.0,,,3.0,,100.0,DILNET2.0,c8:a6:08:a0:fd:50,Windows,
