@@ -1,0 +1,4 @@
+location,latitude,longitude,x-coordinate,y-coordinate,date,day_of_week,time_recorded,t_minutes_after_midnight,time_slot,estimated_occupancy_N,signal_strength_dBm,avg_latency_ms,download_throughput_Mbps,upload_throughput_Mbps,packet_loss_pct,gateway_avg_latency_ms,gateway_packet_loss_pct,ssid,bssid,os_detected,speedtest_server_id
+serials,14.648366,121.068728,1.915,-37.357,11-27-2026,Friday,09:02:45,542.75,s1,12,-54.0,42.0,64.0578,7.5069,0.0,,100.0,DILNET2.0,c8:a6:08:a0:fc:d1,Windows,47489
+serials,14.648373,121.068714,0.445,-36.599,11-27-2026,Friday,09:16:21,556.35,s1,12,-54.0,43.0,67.1727,32.4726,0.0,,100.0,DILNET2.0,c8:a6:08:a0:fc:d1,Windows,47489
+serials,14.648334,121.068687,-2.449,-41.006,11-27-2026,Friday,09:31:31,571.52,s1,11,-55.5,40.0,75.6759,4.4229,0.0,,100.0,DILNET2.0,c8:a6:08:a0:fc:d1,Windows,47489
