@@ -435,6 +435,12 @@ def sanitize_filename(name: str) -> str:
     return cleaned or "Unknown_Location"
 
 
+def normalize_location_label(name: str) -> str:
+    """Normalize the wellness room label used in CSV values and filenames."""
+    cleaned = re.sub(r"[_\s]+", " ", name).strip().casefold()
+    return "wellness" if cleaned == "wellness room" else name.strip()
+
+
 def get_device_coordinates(timeout_seconds: int = 90) -> tuple[float, float]:
     """Request the device's current coordinates through the default browser."""
     completed = threading.Event()
@@ -601,7 +607,7 @@ def main():
 
     location = ""
     while not location:
-        location = input("Enter location label: ").strip()
+        location = normalize_location_label(input("Enter location label: ").strip())
 
     while True:
         occ_raw = input("Enter estimated occupancy (N): ").strip()

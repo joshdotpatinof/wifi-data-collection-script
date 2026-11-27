@@ -95,6 +95,11 @@ class CsvAppendTests(unittest.TestCase):
 
 
 class LocationCoordinateTests(unittest.TestCase):
+    def test_normalize_location_label_maps_wellness_room_aliases(self):
+        self.assertEqual(data.normalize_location_label("Wellness Room"), "wellness")
+        self.assertEqual(data.normalize_location_label(" Wellness_Room "), "wellness")
+        self.assertEqual(data.normalize_location_label("Library"), "Library")
+
     def test_coordinates_to_xy_uses_east_and_north_meters(self):
         x_coordinate, y_coordinate = data.coordinates_to_xy(
             latitude=0.001,
