@@ -2,6 +2,59 @@
 
 This is a script used for data collection on WiFi metrics.
 
+## Requirements
+
+Install these dependencies before running the script:
+
+- Python 3
+- A web browser with location services enabled
+- `ping` (included with Windows, Linux, and macOS)
+- A speed test tool:
+  - Recommended: `speedtest-cli`
+  - Ookla's `speedtest` command is also supported
+- Wi-Fi/network tools used by the script:
+  - Windows: built-in `netsh`
+  - Linux: `iw` or `nmcli` for Wi-Fi details, and `iproute2` (`ip`) for the
+    default gateway
+  - macOS: built-in `system_profiler` and `route`
+
+Install `speedtest-cli` with Python:
+
+```bash
+# Linux or macOS
+python3 -m pip install --user speedtest-cli
+
+# Windows
+py -m pip install --user speedtest-cli
+# or
+python -m pip install --user speedtest-cli
+```
+
+On Linux, `iw` and `iproute2` can be installed with the distribution package
+manager. For Debian/Ubuntu:
+
+```bash
+sudo apt update
+sudo apt install iw iproute2
+```
+
+Verify the required tools are available:
+
+```bash
+python3 --version
+ping -c 1 8.8.8.8
+speedtest-cli --version
+# Linux only
+iw dev
+ip route show default
+```
+
+On Windows, use `speedtest-cli --version` and `ping -n 1 8.8.8.8` to verify
+the commands. Ookla's Speedtest CLI can be used instead of `speedtest-cli`.
+If neither a `speedtest` nor `speedtest-cli` command is available, the script
+still tries `python -m speedtest`; otherwise download and upload throughput
+measurements are left blank and the script displays a warning.
+
 Run from the repository directory:
 
 ```bash
